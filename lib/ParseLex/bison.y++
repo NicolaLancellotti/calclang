@@ -1,0 +1,75 @@
+%{
+    #include "Lexer.h"
+    #include "AST.h"
+
+%}
+
+%require "3.2"
+%language "c++"
+%define parse.trace // Allow debug
+%define parse.error verbose // Show info error
+%locations
+
+%parse-param {std::unique_ptr<calclang::RootAST>& root}
+%parse-param {calclang::Lexer& _lexer}
+
+// C++ objects as semantic values
+%define api.value.type variant
+%define api.token.constructor
+%define parse.assert
+%define api.value.automove
+
+%code {
+#define yylex _lexer.lex_symbol
+using namespace std;
+using namespace calclang;
+}
+
+%code requires {}
+
+%token               END    0           "end of file"
+%token               PLUS     			"+"
+%token               MINUS     			"-"
+%token               TIMES    			"*"
+%token               EQUAL    			"="
+%token               DIV    			"/"
+%token               LPAR    			"("
+%token               RPAR    			")"
+%token               LCURLY    			"{"
+%token               RCURLY    			"}"
+%token               SEMI    			";"
+%token <std::string> VAR                "variable"
+%token <int>         NUMBER             "number"
+
+%right EQUAL
+%left  PLUS MINUS
+%left  TIMES DIV
+
+%type <int>                                                       program
+%type <std::unique_ptr<calclang::BlockAST>>                       block
+%type <std::unique_ptr<calclang::ExpressionAST>>                  expression
+%type <std::list<std::unique_ptr<calclang::ExpressionAST>>>       expressions
+%type <std::unique_ptr<calclang::VariableAST>>                    variable
+
+%%
+
+%start program;
+
+program: block[b] END                               {root = $b; return 0;}
+
+block: expressions[list]                            {$$ = make_unique<BlockAST>(@$, $list);}
+
+expressions: expression[e]                          {auto l = list<unique_ptr<ExpressionAST>>{}; l.push_front($e); $$ = move(l);}
+expressions: expression[e] SEMI expressions[list]   {auto list = $list; list.push_front($e); $$ = move(list);}
+
+expression: expression[l] PLUS expression[r]        {$$ = make_unique<BinaryOperationAST>(@$, $l, $r, BinaryOperationAST::Operator::Plus);}
+expression: expression[l] MINUS expression[r]       {$$ = make_unique<BinaryOperationAST>(@$, $l, $r, BinaryOperationAST::Operator::Minus);}
+expression: expression[l] DIV expression[r]         {$$ = make_unique<BinaryOperationAST>(@$, $l, $r, BinaryOperationAST::Operator::DividedBy);}
+expression: expression[l] TIMES expression[r]       {$$ = make_unique<BinaryOperationAST>(@$, $l, $r, BinaryOperationAST::Operator::Times);}
+expression: LPAR expression[e] RPAR                 {$$ = $e;}
+expression: variable[v]                             {$$ = $v;}
+expression: NUMBER[n]                               {$$ = make_unique<NumberAST>(@$, $n);}
+expression: LCURLY block[b] RCURLY                  {$$ = $b;}
+expression: expression[v] EQUAL expression[e]       {$$ = make_unique<AssignAST>(@$, $v, $e);}
+
+variable: VAR[v]                                    {$$ = make_unique<VariableAST>(@$, $v);}

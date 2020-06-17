@@ -1,0 +1,402 @@
+Grammar
+
+    0 $accept: program "end of file"
+
+    1 program: block "end of file"
+
+    2 block: expressions
+
+    3 expressions: expression
+    4            | expression ";" expressions
+
+    5 expression: expression "+" expression
+    6           | expression "-" expression
+    7           | expression "/" expression
+    8           | expression "*" expression
+    9           | "(" expression ")"
+   10           | variable
+   11           | "number"
+   12           | "{" block "}"
+   13           | expression "=" expression
+
+   14 variable: "variable"
+
+
+Terminals, with rules where they appear
+
+"end of file" (0) 0 1
+error (256)
+"+" (258) 5
+"-" (259) 6
+"*" (260) 8
+"=" (261) 13
+"/" (262) 7
+"(" (263) 9
+")" (264) 9
+"{" (265) 12
+"}" (266) 12
+";" (267) 4
+"variable" <std::string> (268) 14
+"number" <int> (269) 11
+
+
+Nonterminals, with rules where they appear
+
+$accept (15)
+    on left: 0
+program <int> (16)
+    on left: 1, on right: 0
+block <std::unique_ptr<calclang::BlockAST>> (17)
+    on left: 2, on right: 1 12
+expressions <std::list<std::unique_ptr<calclang::ExpressionAST>>> (18)
+    on left: 3 4, on right: 2 4
+expression <std::unique_ptr<calclang::ExpressionAST>> (19)
+    on left: 5 6 7 8 9 10 11 12 13, on right: 3 4 5 6 7 8 9 13
+variable <std::unique_ptr<calclang::VariableAST>> (20)
+    on left: 14, on right: 10
+
+
+State 0
+
+    0 $accept: . program "end of file"
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    program      go to state 5
+    block        go to state 6
+    expressions  go to state 7
+    expression   go to state 8
+    variable     go to state 9
+
+
+State 1
+
+    9 expression: "(" . expression ")"
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    expression  go to state 10
+    variable    go to state 9
+
+
+State 2
+
+   12 expression: "{" . block "}"
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    block        go to state 11
+    expressions  go to state 7
+    expression   go to state 8
+    variable     go to state 9
+
+
+State 3
+
+   14 variable: "variable" .
+
+    $default  reduce using rule 14 (variable)
+
+
+State 4
+
+   11 expression: "number" .
+
+    $default  reduce using rule 11 (expression)
+
+
+State 5
+
+    0 $accept: program . "end of file"
+
+    "end of file"  shift, and go to state 12
+
+
+State 6
+
+    1 program: block . "end of file"
+
+    "end of file"  shift, and go to state 13
+
+
+State 7
+
+    2 block: expressions .
+
+    $default  reduce using rule 2 (block)
+
+
+State 8
+
+    3 expressions: expression .
+    4            | expression . ";" expressions
+    5 expression: expression . "+" expression
+    6           | expression . "-" expression
+    7           | expression . "/" expression
+    8           | expression . "*" expression
+   13           | expression . "=" expression
+
+    "+"  shift, and go to state 14
+    "-"  shift, and go to state 15
+    "*"  shift, and go to state 16
+    "="  shift, and go to state 17
+    "/"  shift, and go to state 18
+    ";"  shift, and go to state 19
+
+    $default  reduce using rule 3 (expressions)
+
+
+State 9
+
+   10 expression: variable .
+
+    $default  reduce using rule 10 (expression)
+
+
+State 10
+
+    5 expression: expression . "+" expression
+    6           | expression . "-" expression
+    7           | expression . "/" expression
+    8           | expression . "*" expression
+    9           | "(" expression . ")"
+   13           | expression . "=" expression
+
+    "+"  shift, and go to state 14
+    "-"  shift, and go to state 15
+    "*"  shift, and go to state 16
+    "="  shift, and go to state 17
+    "/"  shift, and go to state 18
+    ")"  shift, and go to state 20
+
+
+State 11
+
+   12 expression: "{" block . "}"
+
+    "}"  shift, and go to state 21
+
+
+State 12
+
+    0 $accept: program "end of file" .
+
+    $default  accept
+
+
+State 13
+
+    1 program: block "end of file" .
+
+    $default  reduce using rule 1 (program)
+
+
+State 14
+
+    5 expression: expression "+" . expression
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    expression  go to state 22
+    variable    go to state 9
+
+
+State 15
+
+    6 expression: expression "-" . expression
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    expression  go to state 23
+    variable    go to state 9
+
+
+State 16
+
+    8 expression: expression "*" . expression
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    expression  go to state 24
+    variable    go to state 9
+
+
+State 17
+
+   13 expression: expression "=" . expression
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    expression  go to state 25
+    variable    go to state 9
+
+
+State 18
+
+    7 expression: expression "/" . expression
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    expression  go to state 26
+    variable    go to state 9
+
+
+State 19
+
+    4 expressions: expression ";" . expressions
+
+    "("         shift, and go to state 1
+    "{"         shift, and go to state 2
+    "variable"  shift, and go to state 3
+    "number"    shift, and go to state 4
+
+    expressions  go to state 27
+    expression   go to state 8
+    variable     go to state 9
+
+
+State 20
+
+    9 expression: "(" expression ")" .
+
+    $default  reduce using rule 9 (expression)
+
+
+State 21
+
+   12 expression: "{" block "}" .
+
+    $default  reduce using rule 12 (expression)
+
+
+State 22
+
+    5 expression: expression . "+" expression
+    5           | expression "+" expression .
+    6           | expression . "-" expression
+    7           | expression . "/" expression
+    8           | expression . "*" expression
+   13           | expression . "=" expression
+
+    "*"  shift, and go to state 16
+    "/"  shift, and go to state 18
+
+    $default  reduce using rule 5 (expression)
+
+    Conflict between rule 5 and token "+" resolved as reduce (%left "+").
+    Conflict between rule 5 and token "-" resolved as reduce (%left "-").
+    Conflict between rule 5 and token "*" resolved as shift ("+" < "*").
+    Conflict between rule 5 and token "=" resolved as reduce ("=" < "+").
+    Conflict between rule 5 and token "/" resolved as shift ("+" < "/").
+
+
+State 23
+
+    5 expression: expression . "+" expression
+    6           | expression . "-" expression
+    6           | expression "-" expression .
+    7           | expression . "/" expression
+    8           | expression . "*" expression
+   13           | expression . "=" expression
+
+    "*"  shift, and go to state 16
+    "/"  shift, and go to state 18
+
+    $default  reduce using rule 6 (expression)
+
+    Conflict between rule 6 and token "+" resolved as reduce (%left "+").
+    Conflict between rule 6 and token "-" resolved as reduce (%left "-").
+    Conflict between rule 6 and token "*" resolved as shift ("-" < "*").
+    Conflict between rule 6 and token "=" resolved as reduce ("=" < "-").
+    Conflict between rule 6 and token "/" resolved as shift ("-" < "/").
+
+
+State 24
+
+    5 expression: expression . "+" expression
+    6           | expression . "-" expression
+    7           | expression . "/" expression
+    8           | expression . "*" expression
+    8           | expression "*" expression .
+   13           | expression . "=" expression
+
+    $default  reduce using rule 8 (expression)
+
+    Conflict between rule 8 and token "+" resolved as reduce ("+" < "*").
+    Conflict between rule 8 and token "-" resolved as reduce ("-" < "*").
+    Conflict between rule 8 and token "*" resolved as reduce (%left "*").
+    Conflict between rule 8 and token "=" resolved as reduce ("=" < "*").
+    Conflict between rule 8 and token "/" resolved as reduce (%left "/").
+
+
+State 25
+
+    5 expression: expression . "+" expression
+    6           | expression . "-" expression
+    7           | expression . "/" expression
+    8           | expression . "*" expression
+   13           | expression . "=" expression
+   13           | expression "=" expression .
+
+    "+"  shift, and go to state 14
+    "-"  shift, and go to state 15
+    "*"  shift, and go to state 16
+    "="  shift, and go to state 17
+    "/"  shift, and go to state 18
+
+    $default  reduce using rule 13 (expression)
+
+    Conflict between rule 13 and token "+" resolved as shift ("=" < "+").
+    Conflict between rule 13 and token "-" resolved as shift ("=" < "-").
+    Conflict between rule 13 and token "*" resolved as shift ("=" < "*").
+    Conflict between rule 13 and token "=" resolved as shift (%right "=").
+    Conflict between rule 13 and token "/" resolved as shift ("=" < "/").
+
+
+State 26
+
+    5 expression: expression . "+" expression
+    6           | expression . "-" expression
+    7           | expression . "/" expression
+    7           | expression "/" expression .
+    8           | expression . "*" expression
+   13           | expression . "=" expression
+
+    $default  reduce using rule 7 (expression)
+
+    Conflict between rule 7 and token "+" resolved as reduce ("+" < "/").
+    Conflict between rule 7 and token "-" resolved as reduce ("-" < "/").
+    Conflict between rule 7 and token "*" resolved as reduce (%left "*").
+    Conflict between rule 7 and token "=" resolved as reduce ("=" < "/").
+    Conflict between rule 7 and token "/" resolved as reduce (%left "/").
+
+
+State 27
+
+    4 expressions: expression ";" expressions .
+
+    $default  reduce using rule 4 (expressions)

@@ -1,0 +1,4 @@
+build/
+cmake-build-verbose/
+cmake-build-debug/
+.idea

@@ -1,0 +1,8 @@
+add_subdirectory(AST)
+add_subdirectory(ASTDump)
+add_subdirectory(Basic)
+add_subdirectory(Driver)
+add_subdirectory(Evaluator)
+add_subdirectory(ParseLex)
+add_subdirectory(Sema)
+add_subdirectory(Interpreter)
