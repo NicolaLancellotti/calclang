@@ -30,18 +30,18 @@ press return and then `control + D` (EOF)
 
 ### Flags
 
-Meaning                         |  Flag
-|---|---|
-Lexical analysis                | -l
-Lexical analysis verbose        | -lv
-Dump tokens to file             | -dtokens=`<file>`
-Dump tokens to standard error   | -dtokens
-Syntactic analysis              | -p
-Syntactic analysis verbose      | -pv
-Dump ast to file                | -dast=`<file>`
-Dumpast to standard error       | -dast
-Semantic analysis               | -s
-Evaluation (default if no other is specified)                     | -e
+Meaning                        					 |  Flag
+|------------------------------------------------|-------------------|
+Lexical analysis               					 | -l
+Lexical analysis verbose        				 | -lv
+Dump tokens to file            					 | -dtokens=`<file>`
+Dump tokens to standard error   			     | -dtokens
+Syntactic analysis             					 | -p
+Syntactic analysis verbose     					 | -pv
+Dump AST to file                                 | -dast=`<file>`
+Dump AST to standard error                       | -dast
+Semantic analysis                                | -s
+Evaluation (default if no other is specified)    | -e
 
 #### Example
 `./calclang -dast=ast.xml ../examples/main1.calc`
