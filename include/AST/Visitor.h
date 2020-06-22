@@ -3,18 +3,17 @@
 
 namespace calclang {
 
+    class ModuleAST;
     class NumberAST;
-
     class BinaryOperationAST;
-
     class BlockAST;
-
     class AssignAST;
-
     class VariableAST;
 
     class Visitor {
     public:
+        virtual auto visit(ModuleAST&) -> void = 0;
+
         virtual auto visit(NumberAST&) -> void = 0;
 
         virtual auto visit(BinaryOperationAST&) -> void = 0;

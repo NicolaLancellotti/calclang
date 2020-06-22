@@ -10,7 +10,7 @@
 %define parse.error verbose // Show info error
 %locations
 
-%parse-param {std::unique_ptr<calclang::RootAST>& root}
+%parse-param {std::unique_ptr<calclang::ModuleAST>& root}
 %parse-param {calclang::Lexer& _lexer}
 
 // C++ objects as semantic values
@@ -55,7 +55,7 @@ using namespace calclang;
 
 %start program;
 
-program: block[b] END                               {root = $b; return 0;}
+program: block[e] END                               {root = make_unique<ModuleAST>(@$, $e); return 0;}
 
 block: expressions[list]                            {$$ = make_unique<BlockAST>(@$, $list);}
 

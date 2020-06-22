@@ -3,8 +3,8 @@
 
 using namespace calclang;
 
-auto Parser::operator()() -> std::unique_ptr<RootAST> {
-    std::unique_ptr<RootAST> root;
+auto Parser::operator()() -> std::unique_ptr<ModuleAST> {
+    std::unique_ptr<ModuleAST> root;
 
     auto x = [&]() -> SymbolType {
         return _lexer.lex_symbol();

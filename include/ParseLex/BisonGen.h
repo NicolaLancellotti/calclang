@@ -32,7 +32,7 @@
 
 
 /**
- ** \file /Users/nicola/Developer/github/private_monorepo/sample-compiler/include//ParseLex/BisonGen.h
+ ** \file /Users/nicola/Developer/github/calclang/include//ParseLex/BisonGen.h
  ** Define the yy::parser class.
  */
 
@@ -41,12 +41,12 @@
 // Undocumented macros, especially those whose name start with YY_,
 // are private implementation details.  Do not rely on them.
 
-#ifndef YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_PRIVATE_MONOREPO_SAMPLE_COMPILER_INCLUDE_PARSELEX_BISONGEN_H_INCLUDED
-# define YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_PRIVATE_MONOREPO_SAMPLE_COMPILER_INCLUDE_PARSELEX_BISONGEN_H_INCLUDED
+#ifndef YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_CALCLANG_INCLUDE_PARSELEX_BISONGEN_H_INCLUDED
+# define YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_CALCLANG_INCLUDE_PARSELEX_BISONGEN_H_INCLUDED
 // //                    "%code requires" blocks.
-#line 28 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:420
+#line 28 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:420
 
-#line 50 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/include//ParseLex/BisonGen.h" // lalr1.cc:420
+#line 50 "/Users/nicola/Developer/github/calclang/include//ParseLex/BisonGen.h" // lalr1.cc:420
 
 # include <cassert>
 # include <cstdlib> // std::abort
@@ -146,7 +146,7 @@
 
 
 namespace yy {
-#line 150 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/include//ParseLex/BisonGen.h" // lalr1.cc:420
+#line 150 "/Users/nicola/Developer/github/calclang/include//ParseLex/BisonGen.h" // lalr1.cc:420
 
   /// A stack with random access from its top.
   template <typename T, typename S = std::vector<T> >
@@ -669,7 +669,7 @@ namespace yy {
     typedef basic_symbol<by_type> symbol_type;
 
     /// Build a parser object.
-    parser (std::unique_ptr<calclang::RootAST>& root_yyarg, calclang::Lexer& _lexer_yyarg);
+    parser (std::unique_ptr<calclang::ModuleAST>& root_yyarg, calclang::Lexer& _lexer_yyarg);
     virtual ~parser ();
 
     /// Parse.  An alias for parse ().
@@ -947,7 +947,7 @@ namespace yy {
 
 
     // User arguments.
-    std::unique_ptr<calclang::RootAST>& root;
+    std::unique_ptr<calclang::ModuleAST>& root;
     calclang::Lexer& _lexer;
   };
 
@@ -1408,9 +1408,9 @@ namespace yy {
 
 
 } // yy
-#line 1412 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/include//ParseLex/BisonGen.h" // lalr1.cc:420
+#line 1412 "/Users/nicola/Developer/github/calclang/include//ParseLex/BisonGen.h" // lalr1.cc:420
 
 
 
 
-#endif // !YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_PRIVATE_MONOREPO_SAMPLE_COMPILER_INCLUDE_PARSELEX_BISONGEN_H_INCLUDED
+#endif // !YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_CALCLANG_INCLUDE_PARSELEX_BISONGEN_H_INCLUDED

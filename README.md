@@ -26,7 +26,7 @@ press return and then `control + D` (EOF)
 
 ### Run in noninteractive mode (with input file)
 
-`./calclang ../example/main1.calc`
+`./calclang ../examples/main1.calc`
 
 ### Flags
 
@@ -49,12 +49,14 @@ Evaluation (default if no other is specified)    | -e
 `cat ast.xml`
 
 ```
-<BodyAST loc="main1.calc:1:1">
-    <BinaryOpAST loc="main1.calc:1:1" op="Plus">
-        <NumberAST loc="main1.calc:1:1">1</NumberAST>
-        <NumberAST loc="main1.calc:1:5">2</NumberAST>
-    </BinaryOpAST>
-</BodyAST>
+<ModuleAST loc="main1.calc:1:1">
+    <BodyAST loc="main1.calc:1:1">
+        <BinaryOpAST loc="main1.calc:1:1" op="Plus">
+            <NumberAST loc="main1.calc:1:1">1</NumberAST>
+            <NumberAST loc="main1.calc:1:5">2</NumberAST>
+        </BinaryOpAST>
+    </BodyAST>
+</ModuleAST>
 ```
 
 ## Grammar

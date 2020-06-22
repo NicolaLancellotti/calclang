@@ -36,25 +36,25 @@
 
 
 // First part of user prologue.
-#line 1 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:432
+#line 1 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:432
 
     #include "Lexer.h"
     #include "AST.h"
 
 
-#line 46 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:432
+#line 46 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:432
 
 #include "BisonGen.h"
 
 
 // Unqualified %code blocks.
-#line 22 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:438
+#line 22 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:438
 
 #define yylex _lexer.lex_symbol
 using namespace std;
 using namespace calclang;
 
-#line 58 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:438
+#line 58 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:438
 
 
 #ifndef YY_
@@ -149,7 +149,7 @@ using namespace calclang;
 
 
 namespace yy {
-#line 153 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:513
+#line 153 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:513
 
   /* Return YYSTR after stripping away unnecessary quotes and
      backslashes, so that it's suitable for yyerror.  The heuristic is
@@ -190,7 +190,7 @@ namespace yy {
 
 
   /// Build a parser object.
-  parser::parser (std::unique_ptr<calclang::RootAST>& root_yyarg, calclang::Lexer& _lexer_yyarg)
+  parser::parser (std::unique_ptr<calclang::ModuleAST>& root_yyarg, calclang::Lexer& _lexer_yyarg)
     :
 #if YYDEBUG
       yydebug_ (false),
@@ -643,91 +643,91 @@ namespace yy {
           switch (yyn)
             {
   case 2:
-#line 58 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
-    {root = YY_MOVE (yystack_[1].value.as< std::unique_ptr<calclang::BlockAST> > ()); return 0;}
-#line 649 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 58 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
+    {root = make_unique<ModuleAST>(yylhs.location, YY_MOVE (yystack_[1].value.as< std::unique_ptr<calclang::BlockAST> > ())); return 0;}
+#line 649 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 3:
-#line 60 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 60 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::BlockAST> > () = make_unique<BlockAST>(yylhs.location, YY_MOVE (yystack_[0].value.as< std::list<std::unique_ptr<calclang::ExpressionAST>> > ()));}
-#line 655 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 655 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 4:
-#line 62 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 62 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {auto l = list<unique_ptr<ExpressionAST>>{}; l.push_front(YY_MOVE (yystack_[0].value.as< std::unique_ptr<calclang::ExpressionAST> > ())); yylhs.value.as< std::list<std::unique_ptr<calclang::ExpressionAST>> > () = move(l);}
-#line 661 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 661 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 5:
-#line 63 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 63 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {auto list = YY_MOVE (yystack_[0].value.as< std::list<std::unique_ptr<calclang::ExpressionAST>> > ()); list.push_front(YY_MOVE (yystack_[2].value.as< std::unique_ptr<calclang::ExpressionAST> > ())); yylhs.value.as< std::list<std::unique_ptr<calclang::ExpressionAST>> > () = move(list);}
-#line 667 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 667 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 6:
-#line 65 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 65 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = make_unique<BinaryOperationAST>(yylhs.location, YY_MOVE (yystack_[2].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), YY_MOVE (yystack_[0].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), BinaryOperationAST::Operator::Plus);}
-#line 673 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 673 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 7:
-#line 66 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 66 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = make_unique<BinaryOperationAST>(yylhs.location, YY_MOVE (yystack_[2].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), YY_MOVE (yystack_[0].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), BinaryOperationAST::Operator::Minus);}
-#line 679 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 679 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 8:
-#line 67 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 67 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = make_unique<BinaryOperationAST>(yylhs.location, YY_MOVE (yystack_[2].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), YY_MOVE (yystack_[0].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), BinaryOperationAST::Operator::DividedBy);}
-#line 685 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 685 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 9:
-#line 68 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 68 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = make_unique<BinaryOperationAST>(yylhs.location, YY_MOVE (yystack_[2].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), YY_MOVE (yystack_[0].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), BinaryOperationAST::Operator::Times);}
-#line 691 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 691 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 10:
-#line 69 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 69 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = YY_MOVE (yystack_[1].value.as< std::unique_ptr<calclang::ExpressionAST> > ());}
-#line 697 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 697 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 11:
-#line 70 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 70 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = YY_MOVE (yystack_[0].value.as< std::unique_ptr<calclang::VariableAST> > ());}
-#line 703 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 703 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 12:
-#line 71 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 71 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = make_unique<NumberAST>(yylhs.location, YY_MOVE (yystack_[0].value.as< int > ()));}
-#line 709 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 709 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 13:
-#line 72 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 72 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = YY_MOVE (yystack_[1].value.as< std::unique_ptr<calclang::BlockAST> > ());}
-#line 715 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 715 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 14:
-#line 73 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 73 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::ExpressionAST> > () = make_unique<AssignAST>(yylhs.location, YY_MOVE (yystack_[2].value.as< std::unique_ptr<calclang::ExpressionAST> > ()), YY_MOVE (yystack_[0].value.as< std::unique_ptr<calclang::ExpressionAST> > ()));}
-#line 721 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 721 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
   case 15:
-#line 75 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/bison.y++" // lalr1.cc:907
+#line 75 "/Users/nicola/Developer/github/calclang/lib/ParseLex/bison.y++" // lalr1.cc:907
     {yylhs.value.as< std::unique_ptr<calclang::VariableAST> > () = make_unique<VariableAST>(yylhs.location, YY_MOVE (yystack_[0].value.as< std::string > ()));}
-#line 727 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 727 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
     break;
 
 
-#line 731 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
+#line 731 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:907
             default:
               break;
             }
@@ -1110,4 +1110,4 @@ namespace yy {
 
 
 } // yy
-#line 1114 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/BisonGen.cpp" // lalr1.cc:1218
+#line 1114 "/Users/nicola/Developer/github/calclang/lib/ParseLex/BisonGen.cpp" // lalr1.cc:1218

@@ -2,6 +2,12 @@
 using namespace tinyxml2;
 using namespace calclang;
 
+
+auto AST2XMLVisitor::visit(ModuleAST& node) -> void {
+    auto element = new_element(node, "ModuleAST");
+    root = element; node.expression()->accept(*this);
+}
+
 auto AST2XMLVisitor::new_element(const NodeAST& node, const char* name) -> XMLElement* {
     XMLElement* element = doc.NewElement(name);
     element->SetAttribute("loc", location_to_string(node.location()).c_str());

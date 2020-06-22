@@ -15,11 +15,13 @@ namespace calclang {
                 root{&(this->doc)},
                 _file_box{std::move(file_box)} {}
 
-        auto operator()(std::unique_ptr<RootAST>& node) {
+        auto operator()(std::unique_ptr<ModuleAST>& node) {
             node->accept(*this);
             tinyxml2::XMLPrinter steamer{_file_box.file()};
             doc.Print(&steamer);
         }
+
+        auto visit(ModuleAST&) -> void override;
 
         auto visit(NumberAST&) -> void override;
 

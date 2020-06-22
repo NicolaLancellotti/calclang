@@ -31,12 +31,12 @@
 // version 2.2 of Bison.
 
 /**
- ** \file /Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/location.hh
+ ** \file /Users/nicola/Developer/github/calclang/lib/ParseLex/location.hh
  ** Define the yy::location class.
  */
 
-#ifndef YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_PRIVATE_MONOREPO_SAMPLE_COMPILER_LIB_PARSELEX_LOCATION_HH_INCLUDED
-# define YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_PRIVATE_MONOREPO_SAMPLE_COMPILER_LIB_PARSELEX_LOCATION_HH_INCLUDED
+#ifndef YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_CALCLANG_LIB_PARSELEX_LOCATION_HH_INCLUDED
+# define YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_CALCLANG_LIB_PARSELEX_LOCATION_HH_INCLUDED
 
 # include <algorithm> // std::max
 # include <iostream>
@@ -56,7 +56,7 @@
 
 
 namespace yy {
-#line 60 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/location.hh" // location.cc:360
+#line 60 "/Users/nicola/Developer/github/calclang/lib/ParseLex/location.hh" // location.cc:360
   /// A point in a source file.
   class position
   {
@@ -318,5 +318,5 @@ namespace yy {
 
 
 } // yy
-#line 322 "/Users/nicola/Developer/github/private_monorepo/sample-compiler/lib/ParseLex/location.hh" // location.cc:360
-#endif // !YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_PRIVATE_MONOREPO_SAMPLE_COMPILER_LIB_PARSELEX_LOCATION_HH_INCLUDED
+#line 322 "/Users/nicola/Developer/github/calclang/lib/ParseLex/location.hh" // location.cc:360
+#endif // !YY_YY_USERS_NICOLA_DEVELOPER_GITHUB_CALCLANG_LIB_PARSELEX_LOCATION_HH_INCLUDED

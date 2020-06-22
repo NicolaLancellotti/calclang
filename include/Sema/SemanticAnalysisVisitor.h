@@ -12,10 +12,12 @@ namespace calclang {
     public:
         SemanticAnalysisVisitor(bool show_error): _diagnostic{show_error} {};
 
-        auto operator()(std::unique_ptr<RootAST>& Node) -> bool {
+        auto operator()(std::unique_ptr<ModuleAST>& Node) -> bool {
             Node->accept(*this);
             return _diagnostic.is_correct();
         }
+
+        auto visit(ModuleAST&) -> void override;
 
         auto visit(NumberAST&) -> void override;
 

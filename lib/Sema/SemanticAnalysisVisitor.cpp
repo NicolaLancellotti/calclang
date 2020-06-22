@@ -2,6 +2,10 @@
 
 using namespace calclang;
 
+auto SemanticAnalysisVisitor::visit(ModuleAST& node) -> void {
+    node.expression()->accept(*this);
+}
+
 auto SemanticAnalysisVisitor::visit(NumberAST& node) -> void {
 
 }

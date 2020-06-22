@@ -10,10 +10,12 @@ namespace calclang {
     class EvaluatorVisitor : public Visitor {
     public:
 
-        auto operator()(std::unique_ptr<RootAST>& node) -> int {
+        auto operator()(std::unique_ptr<ModuleAST>& node) -> int {
             node->accept(*this);
             return this->_value;
         }
+
+        auto visit(ModuleAST&) -> void override;
 
         auto visit(NumberAST&) -> void override;
 

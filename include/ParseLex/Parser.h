@@ -17,7 +17,7 @@ namespace calclang {
         Parser(Lexer lexer, bool verbose) : _lexer{std::move(lexer)},
                                             _verbose{verbose} {};
 
-        auto operator()() -> std::unique_ptr<RootAST>;
+        auto operator()() -> std::unique_ptr<ModuleAST>;
 
     private:
         Lexer _lexer;

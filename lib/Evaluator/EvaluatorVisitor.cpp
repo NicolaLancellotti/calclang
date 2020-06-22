@@ -5,6 +5,10 @@
 
 using namespace calclang;
 
+auto EvaluatorVisitor::visit(ModuleAST& node) -> void {
+    node.expression()->accept(*this);
+}
+
 auto EvaluatorVisitor::visit(NumberAST& node) -> void {
     _value = node.value();
 }
